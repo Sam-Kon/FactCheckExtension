@@ -1,8 +1,17 @@
 console.log("This is the popup!")
 
-chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    var tab = tabs[0];
-    var title = tab.title;
+let myBtn = document.getElementById("showTitleButton");
 
-    console.log("Title: " + title);
-});
+myBtn.onclick = () => {
+    showTitle();
+}
+
+function showTitle() {
+    let myHead = document.getElementById("titleText");
+
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        var tab = tabs[0];
+        var title = tab.title;
+        myHead.textContent = `${title}`;
+    });
+}
